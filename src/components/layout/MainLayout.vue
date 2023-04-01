@@ -24,12 +24,17 @@
           </v-app-bar-nav-icon>
         </v-col>
       </v-row>
+      <v-row>
+        <div v-if="$slots.subHeader" class="sub-header">
+          <slot name="subHeader"></slot>
+        </div>
+      </v-row>
     </v-container>
   </header>
-  <div class="sub-header">
-    <slot name="sub-header"></slot>
-  </div>
-  <main></main>
+
+  <main>
+    <slot name="mainContent"></slot>
+  </main>
 </template>
 
 <script lang="ts">
