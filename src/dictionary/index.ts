@@ -5,11 +5,21 @@ const messages = {
     changeLanguage: "Сменить язык",
     avaliableLanguages: ["Английский", "Русский"],
     back: "Назад",
+    id: "Идентификатор",
+    text: "Текст",
+    phone: "Телефон",
+    type: "Тип",
+    selectColHide: "Выберите колонки для скрытия:",
   },
   eng: {
     changeLanguage: "Change language",
     avaliableLanguages: ["English", "Russian"],
     back: "Back",
+    id: "Id",
+    text: "text",
+    phone: "Phone",
+    type: "Type",
+    selectColHide: "Select columns to hide:",
   },
 };
 
