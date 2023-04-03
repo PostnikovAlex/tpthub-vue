@@ -81,7 +81,7 @@ export default defineComponent({
     };
   },
   computed: {
-    headings(): any {
+    headings() {
       return [
         { text: this.$t("id"), value: "id" },
         { text: this.$t("text"), value: "text" },

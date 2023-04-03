@@ -13,25 +13,8 @@
         </v-col>
         <v-spacer cols="6"></v-spacer>
         <v-col cols="2">
-          <select v-model="$i18n.locale" @change="changeLocale">
-            <option
-              v-for="locale in $i18n.availableLocales"
-              :key="`locale-${locale}`"
-              :value="locale"
-            >
-              {{ locale }}
-            </option>
-
-            <!-- <option
-              :key="langObj.value"
-              v-for="langObj in languages"
-              :value="langObj.value"
-            >
-              {{ langObj.label }}
-            </option> -->
-            <!-- <option value="eng">{{ $t("eng.avaliableLanguages.0") }}</option>
-            <option value="ru">{{ $t("ru.avaliableLanguages.0") }}</option> -->
-          </select>
+          <Select></Select>
+          <!-- </select> -->
         </v-col>
         <v-col cols="2">
           <v-app-bar-nav-icon icon="text" variant="text">
@@ -55,19 +38,16 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import i18n from "../../dictionary/index";
-import { AVAILABLE_LANGUAGES } from "../../dictionary/index";
+import Select from "../ui/Select.vue";
 export default defineComponent({
   name: "MainLayout",
-  data() {
-    return {
-      languages: AVAILABLE_LANGUAGES,
-    };
+  components: {
+    Select,
   },
   methods: {
     changeLocale(event: Event) {
-      const locale: any = (event.target as HTMLSelectElement).value;
-      console.log(i18n);
-      i18n.global.locale = locale;
+      const locale = (event.target as HTMLSelectElement).value as "ru" | "eng";
+      // i18n.global.locale = locale;
     },
   },
 });

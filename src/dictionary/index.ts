@@ -9,6 +9,8 @@ const messages = {
     phone: "Телефон",
     type: "Тип",
     selectColHide: "Выберите колонки для скрытия:",
+    russian: "Русский",
+    english: "Английский",
   },
   eng: {
     changeLanguage: "Change language",
@@ -18,25 +20,12 @@ const messages = {
     phone: "Phone",
     type: "Type",
     selectColHide: "Select columns to hide:",
+    russian: "Russian",
+    english: "English",
   },
 };
 
-interface ILangObject {
-  value: string;
-  label: string;
-}
-
-export const AVAILABLE_LANGUAGES: Array<ILangObject> = [
-  { value: "eng", label: "English" },
-  { value: "ru", label: "Русский" },
-];
-
-interface I18nLocale {
-  locale: string;
-  messages: any;
-}
-
-const i18n: I18n<I18nLocale> = createI18n({
+const i18n = createI18n({
   legacy: false,
   locale: "ru",
   messages,
