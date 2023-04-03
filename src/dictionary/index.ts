@@ -1,9 +1,8 @@
-import { createI18n } from "vue-i18n";
+import { createI18n, I18n } from "vue-i18n";
 
 const messages = {
   ru: {
     changeLanguage: "Сменить язык",
-    avaliableLanguages: ["Английский", "Русский"],
     back: "Назад",
     id: "Идентификатор",
     text: "Текст",
@@ -13,7 +12,6 @@ const messages = {
   },
   eng: {
     changeLanguage: "Change language",
-    avaliableLanguages: ["English", "Russian"],
     back: "Back",
     id: "Id",
     text: "text",
@@ -23,7 +21,22 @@ const messages = {
   },
 };
 
-const i18n = createI18n({
+interface ILangObject {
+  value: string;
+  label: string;
+}
+
+export const AVAILABLE_LANGUAGES: Array<ILangObject> = [
+  { value: "eng", label: "English" },
+  { value: "ru", label: "Русский" },
+];
+
+interface I18nLocale {
+  locale: string;
+  messages: any;
+}
+
+const i18n: I18n<I18nLocale> = createI18n({
   legacy: false,
   locale: "ru",
   messages,

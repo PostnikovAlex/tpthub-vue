@@ -35,3 +35,12 @@ export const fetchFacts = async (): Promise<Array<Ifact>> => {
     throw new Error("");
   }
 };
+
+export const fetchFact = async (factId: string): Promise<Ifact> => {
+  try {
+    const response = await instance.get(`/facts/${factId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("");
+  }
+};

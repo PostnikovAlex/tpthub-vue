@@ -7,7 +7,7 @@
             <v-table>
               <thead>
                 <tr>
-                  <th v-for="(header, index) in headers" :key="header.value">
+                  <th v-for="(header, index) in headings" :key="header.value">
                     <div v-if="!hiddenColumns.includes(index)">
                       {{ header.text }}
                       <v-btn
@@ -27,9 +27,11 @@
                 <tr v-for="item in tableData" :key="item.id">
                   <td v-for="(value, key, index) in item" :key="value">
                     <div v-if="!hiddenColumns.includes(index)">
-                      <router-link to="/{{ value }}}" v-if="key === 'id'">{{
-                        value
-                      }}</router-link>
+                      <router-link
+                        :to="{ name: 'detailed', params: { id: value } }"
+                        v-if="key as string === 'id'"
+                        >{{ value }}</router-link
+                      >
                       <span v-else>{{ value }}</span>
                     </div>
                   </td>
@@ -73,16 +75,20 @@ export default defineComponent({
   name: "HomeView",
   data() {
     return {
-      headers: [
-        { text: this.$t("id"), value: "id" },
-        { text: this.$t("text"), value: "text" },
-        { text: this.$t("phone"), value: "phone" },
-        { text: this.$t("type"), value: "type" },
-      ],
       tableData: [] as Array<Partial<Ifact>>,
       columnModalOpen: false,
       hiddenColumns: [] as number[],
     };
+  },
+  computed: {
+    headings(): any {
+      return [
+        { text: this.$t("id"), value: "id" },
+        { text: this.$t("text"), value: "text" },
+        { text: this.$t("phone"), value: "phone" },
+        { text: this.$t("type"), value: "type" },
+      ];
+    },
   },
   components: {
     MainLayout,
@@ -100,7 +106,6 @@ export default defineComponent({
         updatedAt: element.updatedAt,
         type: element.type,
       }));
-      console.log(fetched);
       this.tableData = fetched;
     },
     showColumnModal(index: number) {
